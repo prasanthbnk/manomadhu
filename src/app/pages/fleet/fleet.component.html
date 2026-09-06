@@ -1,0 +1,49 @@
+<!-- 15: fleet-hero.jpg — row of vehicles / road photo -->
+<div class="page-hero">
+  <img src="assets/images/15-fleet-hero.jpg" alt="Mano Madhu fleet of vehicles" class="page-hero-img" />
+  <div class="page-hero-overlay"></div>
+  <div class="wrap page-hero-inner">
+    <span class="eyebrow light">Our vehicles</span>
+    <h1>Fleet for Every Group Size</h1>
+    <p>Well-maintained, air-conditioned vehicles with experienced drivers for every kind of trip.</p>
+  </div>
+</div>
+
+<section class="bg-white">
+  <div class="wrap">
+    <div class="fleet-list">
+      <!--
+        02: vehicle-sedan.jpg   — Swift or Celerio
+        03: vehicle-suv.jpg     — Innova or Ertiga
+        04: vehicle-tempo.jpg   — Tempo Traveller
+        05: vehicle-bus.jpg     — Mini bus
+      -->
+      @for (v of vehicles; track v.seats; let i = $index) {
+        <div class="fleet-item">
+          <div class="fleet-img">
+            <img [src]="'assets/images/0' + (i + 2) + '-vehicle-' + v.icon + '.jpg'"
+                 [alt]="v.label" loading="lazy" />
+          </div>
+          <div class="fleet-seats">
+            <span class="num">{{ v.seats }}</span>
+            <span class="lbl">Seater</span>
+          </div>
+          <div class="fleet-info">
+            <h2>{{ v.label }}</h2>
+            <p class="models">{{ v.models }}</p>
+            <p class="desc">{{ v.desc }}</p>
+            <ul class="feat-list">
+              <li>✓ Air conditioned</li>
+              <li>✓ Well maintained</li>
+              <li>✓ Experienced driver</li>
+              <li>✓ GPS tracked</li>
+            </ul>
+          </div>
+          <div class="fleet-action">
+            <button (click)="book(v)" class="btn btn-wa">Book this vehicle</button>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

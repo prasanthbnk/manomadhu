@@ -1,0 +1,177 @@
+<!-- HERO -->
+<section class="hero">
+  <!-- Full background image with dark blur overlay -->
+  <img src="assets/images/01-hero-bg.jpg" alt="" class="hero-bg-img" aria-hidden="true" />
+  <div class="hero-overlay"></div>
+
+  <div class="wrap hero-grid">
+    <div class="hero-content reveal in">
+      <span class="eyebrow light">Coimbatore's trusted travel partner</span>
+      <h1>Across town or across <span class="accent">South India</span>, on your schedule.</h1>
+      <p class="lead">Clean cars, courteous drivers and honest fares — local city rides and airport runs, temple tours, hill‑station getaways and outstation trips.</p>
+      <div class="hero-actions">
+        <button (click)="openQuote()" class="btn btn-wa">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.3A7.85 7.85 0 0 0 12 4a7.94 7.94 0 0 0-6.9 11.9L4 20l4.2-1.1A7.9 7.9 0 0 0 12 20a7.94 7.94 0 0 0 5.6-13.7z"/></svg>
+          Book your journey
+        </button>
+        <a routerLink="/packages" class="btn btn-ghost">See tour packages</a>
+      </div>
+      <div class="hero-phones">
+        <div class="phone-item">
+          <span>Call / Book</span>
+          <a [href]="'tel:+91' + business.phone">{{ business.phoneDisplay }}</a>
+        </div>
+        <div class="phone-item">
+          <span>WhatsApp</span>
+          <a [href]="'https://wa.me/' + business.whatsapp" target="_blank">{{ business.whatsappDisplay }}</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Glass card -->
+    <div class="hero-card reveal in">
+      <div class="disc-badge">🎉 {{ business.discount }} off online bookings</div>
+      <h3>Why ride with us?</h3>
+      <p>Four years on these roads, and counting.</p>
+      <ul class="check-list">
+        <li><span class="check">✓</span> Transparent per-km &amp; hourly rates</li>
+        <li><span class="check">✓</span> 4 to 26-seater vehicles</li>
+        <li><span class="check">✓</span> Airport pickup &amp; drop, 24×7</li>
+        <li><span class="check">✓</span> Experienced local drivers</li>
+        <li><span class="check">✓</span> No hidden charges</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Ghats silhouette -->
+  <svg class="ghats" viewBox="0 0 1440 180" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M0,180 L0,110 C120,70 200,120 320,90 C440,60 520,30 640,70 C760,110 820,60 960,80 C1100,100 1180,50 1300,80 C1360,95 1410,110 1440,100 L1440,180 Z" fill="#0E2A20" opacity="0.55"/>
+    <path d="M0,180 L0,140 C140,110 260,150 400,120 C540,90 640,130 780,110 C920,90 1040,140 1200,120 C1320,105 1400,130 1440,125 L1440,180 Z" fill="#0B241B"/>
+  </svg>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="wrap trust-grid">
+    <div class="trust-item"><b>{{ business.experience }}</b><span>Years on the road</span></div>
+    <div class="trust-item"><b>{{ business.customers }}</b><span>Happy customers</span></div>
+    <div class="trust-item"><b>{{ business.rating }}★</b><span>Google rating</span></div>
+    <div class="trust-item"><b>24×7</b><span>Available anytime</span></div>
+  </div>
+</div>
+
+<!-- FLEET PREVIEW -->
+<section class="bg-white">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Our fleet</span>
+      <h2>The right vehicle for every group</h2>
+      <p>From a solo airport drop to a 26-seat college tour — pick what suits your trip.</p>
+    </div>
+    <div class="fleet-grid">
+      <!-- 02: sedan/swift photo, 03: innova/suv photo, 04: tempo traveller photo, 05: mini bus photo -->
+      @for (v of vehicles; track v.seats; let i = $index) {
+        <div class="vehicle-card reveal">
+          <div class="veh-img-wrap">
+            <img [src]="'assets/images/0' + (i + 2) + '-vehicle-' + v.icon + '.jpg'" [alt]="v.label" loading="lazy" />
+          </div>
+          <div class="veh-body">
+            <div class="seats">{{ v.seats }}<small>Seater</small></div>
+            <h3>{{ v.label }}</h3>
+            <p class="models">{{ v.models }}</p>
+            <p class="desc">{{ v.desc }}</p>
+          </div>
+        </div>
+      }
+    </div>
+    <div class="sec-cta">
+      <a routerLink="/fleet" class="btn btn-outline">View full fleet details</a>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES PREVIEW -->
+<section class="bg-sand">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Tour packages</span>
+      <h2>Ready-made day trips, fixed prices</h2>
+      <p>Popular South India routes with pickup from Gandhipuram or your nearest point.</p>
+    </div>
+    <div class="pkg-grid">
+      <!--
+        06: isha-adiyogi.jpg
+        07: pollachi-aliyar.jpg
+        08: palani-temple.jpg
+      -->
+      @for (pkg of packages; track pkg.id) {
+        <div class="pkg-card reveal">
+          <div class="pkg-img">
+            <img [src]="'assets/images/0' + (pkg.id + 5) + '-pkg-' + pkg.id + '.jpg'" [alt]="pkg.title" loading="lazy" />
+            @if (pkg.highlight) { <span class="pkg-badge">{{ pkg.highlight }}</span> }
+          </div>
+          <div class="pkg-top">
+            <span class="pkg-cat">{{ pkg.category }}</span>
+            <h3>{{ pkg.title }}</h3>
+          </div>
+          <div class="pkg-body">
+            <div class="route">
+              @for (stop of pkg.route; track stop; let last = $last) {
+                <span>{{ stop }}</span>@if (!last) { <span class="arr">›</span> }
+              }
+            </div>
+            <p>{{ pkg.desc }}</p>
+            <div class="pkg-foot">
+              <span class="price">₹{{ pkg.price.toLocaleString('en-IN') }}</span>
+              <button (click)="bookPackage(pkg)" class="btn btn-dark btn-sm">Book</button>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+    <div class="sec-cta">
+      <a routerLink="/packages" class="btn btn-primary">View all 6 packages</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES PREVIEW -->
+<section class="bg-white">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">What we do</span>
+      <h2>More than just a ride</h2>
+      <p>Whatever the occasion, we have the right vehicle for it.</p>
+    </div>
+    <div class="svc-grid">
+      @for (svc of services; track svc.title) {
+        <div class="svc-card reveal">
+          <div class="svc-ic">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+            </svg>
+          </div>
+          <h3>{{ svc.title }}</h3>
+          <p>{{ svc.desc }}</p>
+        </div>
+      }
+    </div>
+    <div class="sec-cta">
+      <a routerLink="/services" class="btn btn-outline">All services</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band bg-forest">
+  <div class="wrap cta-inner reveal">
+    <div>
+      <h2>Ready to plan your trip?</h2>
+      <p>Send us a message — we'll get back to you with a quote within minutes.</p>
+    </div>
+    <div class="cta-actions">
+      <button (click)="openChat()" class="btn btn-wa">Chat on WhatsApp</button>
+      <a routerLink="/contact" class="btn btn-ghost">Send an enquiry</a>
+    </div>
+  </div>
+</section>

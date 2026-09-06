@@ -1,0 +1,67 @@
+<!-- 17: destinations-hero.jpg — South India map or hills panorama -->
+<div class="page-hero">
+  <img src="assets/images/17-destinations-hero.jpg" alt="South India destinations" class="page-hero-img" />
+  <div class="page-hero-overlay"></div>
+  <div class="wrap page-hero-inner">
+    <span class="eyebrow light">Where we go</span>
+    <h1>Destinations from Coimbatore</h1>
+    <p>Hill stations, temples, waterfalls and interstate drops — we cover them all.</p>
+  </div>
+</div>
+
+<section class="bg-sand">
+  <div class="wrap">
+    <div class="filter-bar">
+      @for (t of types; track t.key) {
+        <button class="filter-btn" [class.active]="filter() === t.key" (click)="filter.set(t.key)">
+          {{ t.label }}
+        </button>
+      }
+    </div>
+
+    <!--
+      Destination images (18–31):
+      18: dest-ooty.jpg
+      19: dest-kodaikanal.jpg
+      20: dest-munnar.jpg
+      21: dest-valparai.jpg
+      22: dest-siruvani.jpg
+      23: dest-pollachi.jpg
+      24: dest-tiruppur.jpg
+      25: dest-mettupalayam.jpg
+      26: dest-anaikatti.jpg
+      27: dest-palakkad.jpg
+      28: dest-palani.jpg
+      29: dest-madurai.jpg
+      30: dest-thrissur.jpg
+      31: dest-srirangam.jpg
+    -->
+    <div class="dest-grid">
+      @for (d of filtered; track d.name; let i = $index) {
+        <div class="dest-card">
+          <div class="dest-thumb">
+            <img [src]="'assets/images/' + (18 + allIndex(d)) + '-dest-' + d.name.toLowerCase().replace(' ', '-') + '.jpg'"
+                 [alt]="d.name" loading="lazy" />
+          </div>
+          <div class="dest-icon">{{ tagMap[d.type] }}</div>
+          <div class="dest-info">
+            <h3>{{ d.name }}</h3>
+            <span class="km">{{ d.km }} from Coimbatore</span>
+          </div>
+          <button (click)="book(d)" class="btn btn-dark btn-sm">Book trip</button>
+        </div>
+      }
+    </div>
+
+    <div class="drop-info">
+      <h3>One-way drop taxi</h3>
+      <p>Heading out of the city? We run economical one-way drops. Fare finalised within 5 km radius of the drop from city centre.</p>
+      <div class="drop-routes">
+        <span>CBE → Pollachi</span>
+        <span>CBE → Tiruppur</span>
+        <span>CBE → Mettupalayam</span>
+        <span>Anaikatti → Palakkad</span>
+      </div>
+    </div>
+  </div>
+</section>

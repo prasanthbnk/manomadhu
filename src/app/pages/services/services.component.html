@@ -1,0 +1,37 @@
+<div class="page-hero">
+  <!-- 32: services-hero.jpg -->
+  <img src="assets/images/32-services-hero.jpg" alt="Our services" class="page-hero-img" />
+  <div class="page-hero-overlay"></div>
+  <div class="wrap page-hero-inner">
+    <span class="eyebrow light">What we offer</span>
+    <h1>All Our Services</h1>
+    <p>From a quick city drop to a full group event — we've got the right service for every need.</p>
+  </div>
+</div>
+
+<section class="bg-white">
+  <div class="wrap">
+    <div class="svc-grid">
+      @for (svc of services; track svc.title) {
+        <div class="svc-card">
+          <div class="svc-emoji">
+            @switch (svc.icon) {
+              @case ('plane')      { ✈️ }
+              @case ('graduation') { 🎓 }
+              @case ('heart')      { 💍 }
+              @case ('briefcase')  { 💼 }
+              @case ('calendar')   { 📅 }
+              @case ('clock')      { ⏱️ }
+              @case ('map-pin')    { 📍 }
+              @case ('users')      { 👥 }
+              @default             { 🚗 }
+            }
+          </div>
+          <h3>{{ svc.title }}</h3>
+          <p>{{ svc.desc }}</p>
+          <button (click)="enquire(svc)" class="btn btn-outline btn-sm">Enquire</button>
+        </div>
+      }
+    </div>
+  </div>
+</section>

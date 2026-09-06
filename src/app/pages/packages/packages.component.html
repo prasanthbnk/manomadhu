@@ -1,0 +1,59 @@
+<!-- Page hero with background image -->
+<!-- 14: packages-hero.jpg — scenic South India road/temple photo -->
+<div class="page-hero">
+  <img src="assets/images/14-packages-hero.jpg" alt="South India tour" class="page-hero-img" />
+  <div class="page-hero-overlay"></div>
+  <div class="wrap page-hero-inner">
+    <span class="eyebrow light">Tour packages</span>
+    <h1>Day Trips, Fixed Prices</h1>
+    <p>All packages include pickup and drop from Gandhipuram or your nearest point. Toll, parking and permit fees extra where applicable.</p>
+  </div>
+</div>
+
+<section class="bg-sand">
+  <div class="wrap">
+    <div class="pkg-grid">
+      <!--
+        06: isha-adiyogi.jpg        — Isha Yoga Center / Adiyogi statue
+        07: pollachi-aliyar.jpg     — Aliyar dam or Monkey Falls
+        08: palani-temple.jpg       — Palani Murugan temple
+        09: thrissur-beach.jpg      — Snehatheeram beach Kerala
+        10: madurai-meenakshi.jpg   — Meenakshi temple
+        11: srirangam.jpg           — Srirangam temple / Samayapuram
+      -->
+      @for (pkg of packages; track pkg.id) {
+        <div class="pkg-card">
+          <div class="pkg-img">
+            <img [src]="'assets/images/0' + (pkg.id + 5) + '-pkg-' + pkg.id + '.jpg'" [alt]="pkg.title" loading="lazy" />
+            @if (pkg.highlight) { <span class="pkg-badge">{{ pkg.highlight }}</span> }
+          </div>
+          <div class="pkg-top">
+            <span class="pkg-cat">{{ pkg.category }}</span>
+            <h3>{{ pkg.title }}</h3>
+          </div>
+          <div class="pkg-body">
+            <div class="route">
+              @for (stop of pkg.route; track stop; let last = $last) {
+                <span class="stop">{{ stop }}</span>@if (!last) { <span class="arr">›</span> }
+              }
+            </div>
+            <p class="pkg-desc">{{ pkg.desc }}</p>
+            <div class="pkg-foot">
+              <div>
+                <span class="price">₹{{ pkg.price.toLocaleString('en-IN') }}</span>
+                <span class="per">per trip</span>
+              </div>
+              <button (click)="book(pkg)" class="btn btn-wa btn-sm">Book on WhatsApp</button>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+
+    <div class="custom-box">
+      <h3>Need a custom route?</h3>
+      <p>Don't see your destination? We'll build a package just for you.</p>
+      <button (click)="customTrip()" class="btn btn-primary">Request custom package</button>
+    </div>
+  </div>
+</section>

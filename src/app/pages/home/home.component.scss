@@ -1,0 +1,173 @@
+// ── Hero ──────────────────────────────────────────────────────
+.hero {
+  position: relative; overflow: hidden;
+  min-height: 88vh; display: flex; flex-direction: column;
+  padding: 80px 0 0; color: var(--paper);
+}
+
+// Full background image
+.hero-bg-img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  filter: blur(3px) brightness(0.45) saturate(0.8);
+  transform: scale(1.05); // prevents blur edges showing
+  z-index: 0;
+}
+
+// Dark glass overlay
+.hero-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(
+    135deg,
+    rgba(14, 42, 32, 0.72) 0%,
+    rgba(22, 58, 46, 0.55) 50%,
+    rgba(14, 42, 32, 0.80) 100%
+  );
+  backdrop-filter: blur(2px);
+}
+
+.hero-grid {
+  display: grid; grid-template-columns: 1.1fr .9fr;
+  gap: 40px; align-items: center; flex: 1;
+  padding-bottom: 130px;
+  position: relative; z-index: 2;
+}
+
+.hero-content {
+  h1 { font-size: clamp(2.4rem, 5.2vw, 4rem); font-weight: 800; letter-spacing: -.03em; }
+  .accent { color: var(--marigold-soft); }
+  .lead { font-size: 1.15rem; color: rgba(248,244,234,.85); margin: 20px 0 28px; max-width: 36ch; }
+}
+
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+.hero-phones { display: flex; gap: 28px; margin-top: 30px; flex-wrap: wrap; }
+.phone-item {
+  span { display: block; font-size: .76rem; color: rgba(248,244,234,.6); letter-spacing: .04em; margin-bottom: 2px; }
+  a {
+    font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700;
+    font-size: 1.28rem; color: var(--paper); transition: color .15s;
+    &:hover { color: var(--marigold-soft); }
+  }
+}
+
+// Glassmorphism card
+.hero-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 24px; padding: 30px;
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.15);
+  h3 { font-size: 1.3rem; margin: 14px 0 6px; }
+  p  { font-size: .94rem; color: rgba(248,244,234,.75); margin-bottom: 18px; }
+}
+
+.disc-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--marigold); color: #3a2708;
+  font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700;
+  font-size: .88rem; padding: 7px 14px; border-radius: 100px;
+}
+
+.check-list {
+  list-style: none; display: grid; gap: 12px;
+  li { display: flex; align-items: center; gap: 10px; font-size: .96rem; }
+  .check { color: var(--marigold-soft); font-weight: 700; }
+}
+
+.ghats { display: block; width: 100%; position: relative; z-index: 2; margin-top: auto; }
+
+// ── Trust ─────────────────────────────────────────────────────
+.trust-strip { background: var(--forest-deep); color: var(--paper); }
+.trust-grid { display: grid; grid-template-columns: repeat(4,1fr); padding: 24px 0; }
+.trust-item {
+  text-align: center; padding: 10px 16px;
+  border-right: 1px solid var(--line-light);
+  &:last-child { border-right: none; }
+  b { display: block; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.8rem; color: var(--marigold-soft); line-height: 1; }
+  span { font-size: .8rem; color: rgba(248,244,234,.7); margin-top: 6px; display: block; }
+}
+
+// ── Fleet preview ─────────────────────────────────────────────
+.fleet-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 18px; }
+.vehicle-card {
+  background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+  overflow: hidden; transition: transform .18s, box-shadow .18s;
+  &:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(22,58,46,.12); }
+}
+.veh-img-wrap {
+  width: 100%; height: 160px; overflow: hidden;
+  img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+  &:hover img { transform: scale(1.05); }
+}
+.veh-body { padding: 18px; }
+.seats {
+  font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 2.2rem; color: var(--forest); line-height: 1;
+  small { font-size: .82rem; font-weight: 600; color: var(--kumkum); display: block; }
+}
+.vehicle-card h3 { font-size: 1.05rem; margin: 10px 0 5px; }
+.models { font-size: .82rem; color: var(--marigold); font-weight: 600; margin-bottom: 6px; }
+.desc { font-size: .88rem; color: var(--ink-soft); }
+
+// ── Packages ──────────────────────────────────────────────────
+.pkg-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+.pkg-card {
+  background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+  overflow: hidden; display: flex; flex-direction: column;
+  transition: transform .18s, box-shadow .18s;
+  &:hover { transform: translateY(-4px); box-shadow: 0 18px 38px rgba(22,58,46,.13); }
+}
+.pkg-img {
+  width: 100%; height: 180px; overflow: hidden; position: relative; flex-shrink: 0;
+  img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+  &:hover img { transform: scale(1.06); }
+  .pkg-badge { position: absolute; top: 12px; left: 12px; background: var(--marigold); color: #3a2708; font-size: .72rem; font-weight: 700; padding: 4px 10px; border-radius: 100px; }
+}
+.pkg-top {
+  background: var(--forest); color: var(--paper); padding: 16px 22px;
+  .pkg-cat { font-size: .74rem; color: var(--marigold-soft); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+  h3 { font-size: 1.15rem; margin-top: 6px; }
+}
+.pkg-body {
+  padding: 18px 22px; flex: 1; display: flex; flex-direction: column; gap: 10px;
+  .route { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; font-size: .84rem; color: var(--ink-soft);
+    .arr { color: var(--marigold); font-weight: 700; }
+  }
+  p { font-size: .9rem; color: var(--ink-soft); flex: 1; }
+}
+.pkg-foot { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 12px; border-top: 1px solid var(--line); }
+.price { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.5rem; color: var(--forest); }
+
+// ── Services ──────────────────────────────────────────────────
+.svc-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+.svc-card {
+  background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 22px;
+  transition: background .18s, transform .18s;
+  &:hover { background: var(--sand); transform: translateY(-3px); }
+  .svc-ic { width: 44px; height: 44px; border-radius: 12px; background: var(--forest); color: var(--marigold); display: grid; place-items: center; margin-bottom: 14px; }
+  h3 { font-size: 1.06rem; margin-bottom: 6px; }
+  p { font-size: .9rem; color: var(--ink-soft); }
+}
+
+// ── CTA band ──────────────────────────────────────────────────
+.cta-band { padding: 60px 0; }
+.cta-inner {
+  display: flex; align-items: center; justify-content: space-between; gap: 30px; flex-wrap: wrap;
+  h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); color: var(--paper); }
+  p  { color: rgba(248,244,234,.78); margin-top: 8px; }
+}
+.cta-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+.sec-cta { text-align: center; margin-top: 36px; }
+
+// ── Responsive ────────────────────────────────────────────────
+@media (max-width: 940px) {
+  .hero-grid { grid-template-columns: 1fr; padding-bottom: 110px; }
+  .fleet-grid, .pkg-grid, .svc-grid { grid-template-columns: repeat(2,1fr); }
+  .trust-grid { grid-template-columns: repeat(2,1fr); .trust-item:nth-child(2) { border-right: none; } }
+}
+@media (max-width: 600px) {
+  .fleet-grid, .pkg-grid, .svc-grid { grid-template-columns: 1fr; }
+  .cta-inner { flex-direction: column; text-align: center; }
+}

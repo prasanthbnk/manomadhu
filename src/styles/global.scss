@@ -1,0 +1,203 @@
+// ── Design tokens ──────────────────────────────────────────────
+:root {
+  --ink:           #211D17;
+  --ink-soft:      #514A3F;
+  --forest:        #163A2E;
+  --forest-deep:   #0E2A20;
+  --marigold:      #F0A02D;
+  --marigold-soft: #F7C766;
+  --kumkum:        #B23A1E;
+  --paper:         #F8F4EA;
+  --sand:          #EFE7D4;
+  --sand-2:        #E7DDC5;
+  --white:         #ffffff;
+  --line:          rgba(33,29,23,.13);
+  --line-light:    rgba(248,244,234,.16);
+  --wa:            #22B85B;
+  --radius:        18px;
+  --maxw:          1140px;
+  --nav-h:         70px;
+}
+
+// ── Reset ──────────────────────────────────────────────────────
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a  { color: inherit; text-decoration: none; }
+h1, h2, h3, h4, h5 {
+  font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+  line-height: 1.08;
+  font-weight: 700;
+  letter-spacing: -.02em;
+}
+
+// ── Layout helpers ─────────────────────────────────────────────
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 22px; }
+
+// ── Typography helpers ─────────────────────────────────────────
+.eyebrow {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 600;
+  font-size: .82rem;
+  color: var(--kumkum);
+  letter-spacing: .02em;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  &::before {
+    content: '';
+    width: 26px; height: 2px;
+    background: var(--marigold);
+    border-radius: 2px;
+  }
+  &.light { color: var(--marigold-soft);
+    &::before { background: var(--marigold-soft); }
+  }
+}
+
+.sec-head {
+  max-width: 600px;
+  margin-bottom: 44px;
+  h2 { font-size: clamp(1.9rem, 3.6vw, 2.7rem); }
+  p  { font-size: 1.06rem; color: var(--ink-soft); margin-top: 14px; }
+  &.center { margin-left: auto; margin-right: auto; text-align: center; }
+  &.light {
+    h2 { color: var(--paper); }
+    p  { color: rgba(248,244,234,.78); }
+  }
+}
+
+// ── Buttons ────────────────────────────────────────────────────
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 600; font-size: 1rem;
+  padding: 13px 24px; border-radius: 100px;
+  cursor: pointer; border: none;
+  transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+  &:hover { transform: translateY(-2px); }
+}
+.btn-primary {
+  background: var(--marigold); color: #3a2708;
+  box-shadow: 0 6px 20px rgba(240,160,45,.35);
+  &:hover { box-shadow: 0 10px 26px rgba(240,160,45,.45); }
+}
+.btn-wa {
+  background: var(--wa); color: #fff;
+  box-shadow: 0 6px 20px rgba(34,184,91,.32);
+  &:hover { box-shadow: 0 10px 26px rgba(34,184,91,.42); }
+}
+.btn-dark {
+  background: var(--forest); color: var(--paper);
+  &:hover { background: var(--forest-deep); }
+}
+.btn-ghost {
+  background: transparent; color: var(--paper);
+  border: 1.5px solid var(--line-light);
+  &:hover { border-color: var(--marigold); color: var(--marigold-soft); }
+}
+.btn-outline {
+  background: transparent; color: var(--ink);
+  border: 1.5px solid var(--line);
+  &:hover { border-color: var(--marigold); color: var(--forest); }
+}
+.btn-sm { padding: 10px 18px; font-size: .9rem; }
+.btn-full { width: 100%; justify-content: center; }
+
+// ── Cards ──────────────────────────────────────────────────────
+.card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform .18s ease, box-shadow .18s ease;
+  &:hover { transform: translateY(-4px); box-shadow: 0 18px 38px rgba(22,58,46,.12); }
+}
+
+// ── Page hero (shared) ─────────────────────────────────────────
+.page-hero {
+  background: var(--forest);
+  color: var(--paper);
+  padding: 80px 0 64px;
+  position: relative;
+  overflow: hidden;
+  &::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--marigold), var(--kumkum), var(--marigold));
+  }
+  .page-hero-inner {
+    position: relative; z-index: 2;
+    h1 { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 800; }
+    p  { font-size: 1.12rem; color: rgba(248,244,234,.82); margin-top: 14px; max-width: 48ch; }
+  }
+  &::before {
+    content: '';
+    position: absolute; top: -60px; right: -40px;
+    width: 280px; height: 280px; border-radius: 50%;
+    background: radial-gradient(circle, var(--marigold) 0%, transparent 70%);
+    opacity: .5; filter: blur(4px);
+  }
+}
+
+// ── Sections ───────────────────────────────────────────────────
+section { padding: 80px 0; }
+.bg-sand  { background: var(--sand); }
+.bg-dark  { background: var(--forest-deep); color: var(--paper); }
+.bg-forest { background: var(--forest); color: var(--paper); }
+.bg-white { background: var(--white); }
+
+// ── Scroll reveal ──────────────────────────────────────────────
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .6s ease, transform .6s ease;
+  &.in { opacity: 1; transform: none; }
+}
+
+// ── Responsive main ────────────────────────────────────────────
+main { padding-top: var(--nav-h); min-height: calc(100vh - var(--nav-h)); }
+
+// ── Form fields ───────────────────────────────────────────────
+.field {
+  margin-bottom: 16px;
+  label {
+    display: block; font-size: .86rem; font-weight: 600;
+    margin-bottom: 6px; color: var(--ink);
+  }
+  input, select, textarea {
+    width: 100%; padding: 12px 14px;
+    border: 1px solid var(--line); border-radius: 11px;
+    font-family: inherit; font-size: .98rem;
+    background: var(--paper); color: var(--ink);
+    transition: border .15s, box-shadow .15s;
+    &:focus {
+      outline: none;
+      border-color: var(--marigold);
+      box-shadow: 0 0 0 3px rgba(240,160,45,.2);
+    }
+  }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+}
+
+// ── Responsive utilities ───────────────────────────────────────
+@media (max-width: 768px) {
+  section { padding: 58px 0; }
+  .page-hero { padding: 60px 0 44px; }
+  .field .field-row { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, .reveal { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1; transform: none; }
+}

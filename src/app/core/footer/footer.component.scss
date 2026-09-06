@@ -1,0 +1,72 @@
+footer {
+  background: var(--forest-deep);
+  color: rgba(248,244,234,.72);
+  padding: 56px 0 26px;
+}
+
+.foot-grid {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr 1fr 1.2fr;
+  gap: 36px;
+  margin-bottom: 40px;
+  @media (max-width: 900px) { grid-template-columns: 1fr 1fr; }
+  @media (max-width: 560px) { grid-template-columns: 1fr; }
+}
+
+.foot-brand {
+  .brand {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 700; font-size: 1rem;
+    color: var(--paper); margin-bottom: 14px;
+    .mark {
+      width: 34px; height: 34px; border-radius: 9px;
+      background: var(--marigold); color: var(--forest);
+      display: grid; place-items: center; flex-shrink: 0;
+    }
+  }
+  p { font-size: .92rem; line-height: 1.7; max-width: 32ch; }
+}
+
+.social-row {
+  display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px;
+}
+
+.soc-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: .88rem; font-weight: 600;
+  padding: 8px 14px; border-radius: 100px;
+  background: rgba(248,244,234,.1); color: var(--paper);
+  border: 1px solid var(--line-light);
+  transition: background .15s;
+  &:hover { background: rgba(248,244,234,.18); }
+  &.wa { background: rgba(34,184,91,.2); border-color: rgba(34,184,91,.3); }
+}
+
+.foot-col {
+  h5 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 600; color: var(--paper);
+    font-size: .95rem; margin-bottom: 16px; letter-spacing: .02em;
+  }
+  ul { list-style: none; display: grid; gap: 10px; }
+  li a { font-size: .92rem; transition: color .15s; &:hover { color: var(--marigold-soft); } }
+  address {
+    font-style: normal; font-size: .92rem;
+    line-height: 1.7; margin-bottom: 10px;
+  }
+}
+
+.map-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: .88rem; color: var(--marigold-soft);
+  font-weight: 600; transition: opacity .15s;
+  &:hover { opacity: .8; }
+}
+
+.foot-bottom {
+  border-top: 1px solid var(--line-light);
+  padding-top: 22px;
+  display: flex; justify-content: space-between; flex-wrap: wrap;
+  gap: 10px; font-size: .84rem;
+}

@@ -1,0 +1,115 @@
+<div class="page-hero">
+  <!-- 33: contact-hero.jpg -->
+  <img src="assets/images/33-contact-hero.jpg" alt="Contact us" class="page-hero-img" />
+  <div class="page-hero-overlay"></div>
+  <div class="wrap page-hero-inner">
+    <span class="eyebrow light">Reach us</span>
+    <h1>Contact &amp; Enquiry</h1>
+    <p>Fill in the form and we'll open WhatsApp with your details ready to send — no typing needed.</p>
+  </div>
+</div>
+
+<section class="bg-sand">
+  <div class="wrap contact-grid">
+
+    <!-- Enquiry Form -->
+    <div class="form-card">
+      <h2>Book or enquire</h2>
+      <p class="form-sub">We'll reply within minutes on WhatsApp.</p>
+
+      @if (sent()) {
+        <div class="success-banner">
+          ✅ WhatsApp opened with your details! We'll reply shortly.
+        </div>
+      }
+
+      <div class="field">
+        <label for="name">Your name</label>
+        <input id="name" type="text" [(ngModel)]="form.name" name="name" placeholder="e.g. Mano ">
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="from">From</label>
+          <input id="from" type="text" [(ngModel)]="form.from" name="from">
+        </div>
+        <div class="field">
+          <label for="to">To / Destination *</label>
+          <input id="to" type="text" [(ngModel)]="form.to" name="to" placeholder="e.g. Ooty" required>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="date">Travel date</label>
+          <input id="date" type="date" [(ngModel)]="form.date" name="date">
+        </div>
+        <div class="field">
+          <label for="vehicle">Vehicle type</label>
+          <select id="vehicle" [(ngModel)]="form.vehicle" name="vehicle">
+            @for (v of vehicles; track v) {
+              <option [value]="v">{{ v }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="notes">Anything else? (optional)</label>
+        <textarea id="notes" rows="3" [(ngModel)]="form.notes" name="notes" placeholder="Pickup time, number of passengers, special requirements…"></textarea>
+      </div>
+
+      <button (click)="submit()" class="btn btn-wa btn-full" [disabled]="!form.to">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.3A7.85 7.85 0 0 0 12 4a7.94 7.94 0 0 0-6.9 11.9L4 20l4.2-1.1A7.9 7.9 0 0 0 12 20a7.94 7.94 0 0 0 5.6-13.7z"/></svg>
+        Send enquiry via WhatsApp
+      </button>
+
+      <p class="form-hint">
+        Prefer to call? <a [href]="'tel:+91' + business.phone">{{ business.phoneDisplay }}</a>
+      </p>
+    </div>
+
+    <!-- Info + Map -->
+    <div class="contact-info">
+      <div class="info-items">
+        <div class="info-item">
+          <div class="ic">📞</div>
+          <div>
+            <h4>Call us</h4>
+            <a [href]="'tel:+91' + business.phone">{{ business.phoneDisplay }}</a>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="ic">💬</div>
+          <div>
+            <h4>WhatsApp</h4>
+            <a [href]="'https://wa.me/' + business.whatsapp" target="_blank">{{ business.whatsappDisplay }}</a>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="ic">📍</div>
+          <div>
+            <h4>Address</h4>
+            <p>{{ business.address }}</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="ic">🕐</div>
+          <div>
+            <h4>Hours</h4>
+            <p>Open 24 hours, 7 days a week</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Google Maps embed -->
+      <div class="map-box">
+        <iframe [src]="mapUrl" loading="lazy" allowfullscreen title="Mano Madhu Tours location map" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <a [href]="business.googleMapsLink" target="_blank" class="map-link-btn">
+          Open in Google Maps ↗
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,109 @@
+@if (modal.isOpen()) {
+  <div class="qm-overlay" (click)="close()">
+    <div class="qm-card" (click)="$event.stopPropagation()">
+      <div class="qm-head">
+        <h3>Get a free quote</h3>
+        <button class="qm-close" (click)="close()" aria-label="Close">✕</button>
+      </div>
+
+      <div class="qm-body">
+        <div class="field qm-autocomplete">
+          <label>From</label>
+          <input
+            type="text"
+            placeholder="Pickup address"
+            [ngModel]="form.from"
+            (ngModelChange)="onFromInput($event)"
+            (focus)="onFromFocus()"
+            (blur)="onFromBlur()"
+            autocomplete="off"
+          />
+          @if (showFromList() && (fromSearching() || fromSuggestions().length)) {
+            <ul class="qm-suggestions">
+              @if (fromSearching()) {
+                <li class="qm-suggestion-status">Searching…</li>
+              } @else {
+                @for (s of fromSuggestions(); track s.label) {
+                  <li (mousedown)="selectSuggestion('from', s)">{{ s.label }}</li>
+                }
+              }
+            </ul>
+          }
+          <button class="qm-locate" type="button" (click)="useMyLocation()" [disabled]="locating()">
+            @if (locating()) { Locating… } @else { 📍 Use my current location (GPS) }
+          </button>
+        </div>
+
+        <div class="field qm-autocomplete">
+          <label>To</label>
+          <input
+            type="text"
+            placeholder="Drop address"
+            [ngModel]="form.to"
+            (ngModelChange)="onToInput($event)"
+            (focus)="onToFocus()"
+            (blur)="onToBlur()"
+            autocomplete="off"
+          />
+          @if (showToList() && (toSearching() || toSuggestions().length)) {
+            <ul class="qm-suggestions">
+              @if (toSearching()) {
+                <li class="qm-suggestion-status">Searching…</li>
+              } @else {
+                @for (s of toSuggestions(); track s.label) {
+                  <li (mousedown)="selectSuggestion('to', s)">{{ s.label }}</li>
+                }
+              }
+            </ul>
+          }
+        </div>
+
+        <button class="btn btn-outline btn-full qm-distance-btn" type="button" (click)="getDistance()" [disabled]="calculating()">
+          @if (calculating()) { Calculating distance… } @else { Get distance }
+        </button>
+
+        @if (distanceKm(); as km) {
+          <div class="qm-result">
+            <b>≈ {{ km.toFixed(1) }} km</b>
+            @if (durationLabel(); as label) {
+              <span> · ~{{ label }} drive</span>
+            }
+          </div>
+        }
+
+        @if (errorMsg(); as err) {
+          <p class="qm-error">{{ err }}</p>
+        }
+
+        <div class="field">
+          <label>Vehicle type</label>
+          <select [(ngModel)]="form.vehicle">
+            @for (v of vehicles; track v) {
+              <option [value]="v">{{ v }}</option>
+            }
+          </select>
+        </div>
+
+        @if (fareEstimate(); as fare) {
+          <div class="qm-fare">
+            @if (fare.amount) {
+              <b>Estimated fare: ₹{{ fare.amount.toLocaleString('en-IN') }}</b>
+              <span>{{ fare.note }}</span>
+            } @else {
+              <b>Fare on request</b>
+              <span>We'll confirm the exact fare on WhatsApp</span>
+            }
+          </div>
+        }
+      </div>
+
+      <div class="qm-foot">
+        <button class="btn btn-wa btn-full" (click)="proceed()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.3A7.85 7.85 0 0 0 12 4a7.94 7.94 0 0 0-6.9 11.9L4 20l4.2-1.1A7.9 7.9 0 0 0 12 20a7.94 7.94 0 0 0 5.6-13.7z"/></svg>
+          Proceed on WhatsApp
+        </button>
+        <p class="qm-note">You'll be redirected to WhatsApp with your trip details and estimated fare filled in.</p>
+      </div>
+    </div>
+  </div>
+}

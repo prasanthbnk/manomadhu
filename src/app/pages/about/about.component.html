@@ -1,0 +1,53 @@
+<!-- Page hero with background image -->
+<div class="page-hero">
+  <img src="assets/images/12-about-hero.jpg" alt="Mano Madhu Tours team" class="page-hero-img" />
+  <div class="page-hero-overlay"></div>
+  <div class="wrap page-hero-inner">
+    <span class="eyebrow light">Who we are</span>
+    <h1>About Mano Madhu Tours</h1>
+    <p>A Coimbatore-born travel company built on trust, honest fares and a love for the road.</p>
+  </div>
+</div>
+
+<section class="bg-white">
+  <div class="wrap about-grid">
+    <div class="about-text">
+      <span class="eyebrow">Our story</span>
+      <h2>4 Years. 200+ Happy Customers. One Mission.</h2>
+      <p>Mano Madhu Tours and Travels was founded with a simple idea: people in Coimbatore deserve a taxi and travel service they can trust — clean vehicles, honest rates and drivers who care.</p>
+      <p>Starting with a single vehicle on NSR Road, Saibaba Colony, we've grown into a full-service travel company operating across Coimbatore and South India, handling everything from airport drops to multi-day pilgrimage tours.</p>
+      <p>We are proud of our 5-star Google rating — earned through hundreds of trips where we showed up on time, charged what we quoted, and got our customers home safely.</p>
+      <a routerLink="/contact" class="btn btn-primary" style="margin-top:10px">Get in touch</a>
+    </div>
+    <div class="about-right">
+      <!-- 13: team/office photo -->
+      <img src="assets/images/13-team.jpg" alt="Mano Madhu Tours team and vehicles" class="about-img" loading="lazy" />
+      <div class="stats-box">
+        @for (stat of stats; track stat.label) {
+          <div class="stat">
+            <b>{{ stat.value }}</b>
+            <span>{{ stat.label }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-sand">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="eyebrow">What drives us</span>
+      <h2>Our values</h2>
+    </div>
+    <div class="values-grid">
+      @for (v of values; track v.title) {
+        <div class="value-card">
+          <span class="v-icon">{{ v.icon }}</span>
+          <h3>{{ v.title }}</h3>
+          <p>{{ v.desc }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>

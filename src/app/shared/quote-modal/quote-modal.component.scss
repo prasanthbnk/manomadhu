@@ -1,0 +1,103 @@
+.qm-overlay {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(14, 42, 32, .55);
+  backdrop-filter: blur(2px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+  animation: qmFade .18s ease;
+}
+
+.qm-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  width: 100%; max-width: 440px;
+  max-height: 90vh; overflow-y: auto;
+  box-shadow: 0 24px 60px rgba(22, 58, 46, .3);
+  animation: qmPop .2s ease;
+}
+
+@keyframes qmFade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes qmPop { from { opacity: 0; transform: scale(.94) translateY(10px); } to { opacity: 1; transform: none; } }
+
+.qm-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 22px; border-bottom: 1px solid var(--line);
+  h3 { font-size: 1.25rem; }
+  .qm-close {
+    background: none; border: none; cursor: pointer;
+    font-size: 1.1rem; color: var(--ink-soft); padding: 4px;
+    &:hover { color: var(--ink); }
+  }
+}
+
+.qm-body { padding: 20px 22px 4px; }
+
+.qm-autocomplete { position: relative; }
+
+.qm-suggestions {
+  position: absolute; top: calc(100% - 12px); left: 0; right: 0;
+  z-index: 10;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  box-shadow: 0 12px 28px rgba(22, 58, 46, .18);
+  list-style: none;
+  max-height: 220px; overflow-y: auto;
+  margin: 0;
+
+  li {
+    padding: 10px 14px;
+    font-size: .9rem;
+    cursor: pointer;
+    border-bottom: 1px solid var(--line);
+    &:last-child { border-bottom: none; }
+    &:hover { background: var(--sand); }
+  }
+
+  .qm-suggestion-status {
+    color: var(--ink-soft); cursor: default;
+    &:hover { background: none; }
+  }
+}
+
+.qm-locate {
+  margin-top: 8px;
+  background: none; border: none; padding: 0;
+  font-family: inherit; font-size: .86rem; font-weight: 600;
+  color: var(--forest); cursor: pointer;
+  &:hover { color: var(--kumkum); }
+  &:disabled { opacity: .6; cursor: default; }
+}
+
+.qm-distance-btn { margin: 4px 0 16px; }
+
+.qm-result {
+  background: var(--sand); border-radius: 11px;
+  padding: 12px 14px; margin-bottom: 16px;
+  font-size: .95rem; color: var(--ink);
+}
+
+.qm-fare {
+  background: rgba(240, 160, 45, .14);
+  border: 1px solid rgba(240, 160, 45, .35);
+  border-radius: 11px;
+  padding: 12px 14px; margin-bottom: 16px;
+  display: flex; flex-direction: column; gap: 2px;
+  b { color: var(--ink); font-size: 1.02rem; }
+  span { font-size: .8rem; color: var(--ink-soft); }
+}
+
+.qm-error {
+  color: var(--kumkum); font-size: .86rem;
+  margin: -6px 0 16px; line-height: 1.5;
+}
+
+.qm-foot {
+  padding: 18px 22px 22px;
+  border-top: 1px solid var(--line);
+}
+
+.qm-note {
+  text-align: center; font-size: .8rem;
+  color: var(--ink-soft); margin-top: 10px;
+}

@@ -1,0 +1,29 @@
+.fleet-list { display: grid; gap: 20px; }
+.fleet-item { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px 32px; display: flex; align-items: center; gap: 32px; transition: box-shadow .18s;
+  &:hover { box-shadow: 0 10px 30px rgba(22,58,46,.1); }
+  @media(max-width:768px) { flex-direction: column; align-items: flex-start; gap: 20px; }
+}
+.fleet-seats { background: var(--forest); color: var(--paper); border-radius: 16px; padding: 18px 22px; text-align: center; flex-shrink: 0; min-width: 90px;
+  .num { display: block; font-family: 'Bricolage Grotesque',sans-serif; font-weight: 800; font-size: 2.8rem; color: var(--marigold-soft); line-height: 1; }
+  .lbl { font-size: .78rem; color: rgba(248,244,234,.7); letter-spacing: .04em; }
+}
+.fleet-info { flex: 1;
+  h2 { font-size: 1.4rem; margin-bottom: 4px; }
+  .models { font-size: .9rem; color: var(--marigold); font-weight: 600; margin-bottom: 8px; }
+  .desc { font-size: .96rem; color: var(--ink-soft); margin-bottom: 14px; }
+}
+.feat-list { list-style: none; display: flex; gap: 18px; flex-wrap: wrap;
+  li { font-size: .86rem; color: var(--ink-soft); }
+}
+.fleet-action { flex-shrink: 0; }
+
+.page-hero { position: relative; overflow: hidden; }
+.page-hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(3px) brightness(0.35); transform: scale(1.05); z-index: 0; }
+.page-hero-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(135deg, rgba(14,42,32,.75) 0%, rgba(22,58,46,.55) 100%); }
+.page-hero-inner { position: relative; z-index: 2; }
+
+.fleet-img {
+  width: 140px; height: 100px; border-radius: 12px; overflow: hidden; flex-shrink: 0;
+  img { width: 100%; height: 100%; object-fit: cover; }
+  @media(max-width:768px) { width: 100%; height: 180px; }
+}
