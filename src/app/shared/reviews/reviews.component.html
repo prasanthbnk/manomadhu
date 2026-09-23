@@ -1,0 +1,67 @@
+<section class="bg-sand reviews-sec">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Reviews</span>
+      <h2>What our travelers say</h2>
+      <p>Real feedback from riders across Coimbatore and beyond.</p>
+    </div>
+
+    <div class="rev-summary reveal">
+      <svg class="g-logo" width="26" height="26" viewBox="0 0 48 48">
+        <path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 8 3l5.7-5.7C34.6 6.1 29.6 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.5z"/>
+        <path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.6 15.9 18.9 13 24 13c3.1 0 5.8 1.1 8 3l5.7-5.7C34.6 6.1 29.6 4 24 4c-7.4 0-13.8 4.1-17.1 10.1z"/>
+        <path fill="#4CAF50" d="M24 44c5.5 0 10.4-2.1 14.1-5.5l-6.5-5.5C29.5 34.8 26.9 36 24 36c-5.2 0-9.6-3.3-11.2-7.9l-6.6 5.1C9.5 39.6 16.2 44 24 44z"/>
+        <path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.3 4.3-4.2 5.8l6.5 5.5C40.1 36.9 44 31 44 24c0-1.3-.1-2.7-.4-3.5z"/>
+      </svg>
+      <div class="rev-summary-text">
+        <div class="rev-rating">
+          <strong>{{ liveRating() ?? business.rating }}</strong>
+          <span class="rev-stars">
+            @for (filled of stars(+(liveRating() ?? business.rating)); track $index) {
+              <svg width="14" height="14" viewBox="0 0 24 24" [attr.fill]="filled ? '#F0A02D' : 'none'" stroke="#F0A02D" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01z"/></svg>
+            }
+          </span>
+        </div>
+        <span class="rev-count">{{ liveTotal() ?? business.reviewCount }} Google reviews</span>
+      </div>
+      <a [href]="business.googleMapsLink" target="_blank" class="btn btn-outline btn-sm rev-cta">Write a review</a>
+    </div>
+
+    <div
+      class="rev-scroll reveal"
+      #revTrack
+      (mouseenter)="pauseAuto()"
+      (mouseleave)="resumeAuto()"
+      (touchstart)="pauseAuto()"
+      (touchend)="resumeAuto()"
+    >
+      @for (r of reviews(); track r.name) {
+        <div class="rev-card">
+          <div class="rev-card-head">
+            @if (r.photo) {
+              <img [src]="r.photo" [alt]="r.name" class="rev-avatar" referrerpolicy="no-referrer" />
+            } @else {
+              <span class="rev-avatar rev-avatar-initial">{{ r.initial }}</span>
+            }
+            <div>
+              <strong>{{ r.name }}</strong>
+              <span class="rev-time">{{ r.time }}</span>
+            </div>
+          </div>
+          <div class="rev-card-stars">
+            @for (filled of stars(r.rating); track $index) {
+              <svg width="13" height="13" viewBox="0 0 24 24" [attr.fill]="filled ? '#F0A02D' : 'none'" stroke="#F0A02D" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14l-5-4.87 6.91-1.01z"/></svg>
+            }
+          </div>
+          <p class="rev-text">{{ r.text }}</p>
+        </div>
+      }
+    </div>
+
+    <div class="sec-cta">
+      <a [href]="business.googleReviewsLink" target="_blank" class="btn btn-primary">
+        See all reviews on Google
+      </a>
+    </div>
+  </div>
+</section>

@@ -26,14 +26,15 @@
             "assets": [
               { "glob": "**/*", "input": "public" }
             ],
-            "styles": ["src/styles/global.scss"],
-            "scripts": []
+            "styles": ["node_modules/leaflet/dist/leaflet.css", "src/styles/global.scss"],
+            "scripts": [],
+            "allowedCommonJsDependencies": ["leaflet"]
           },
           "configurations": {
             "production": {
               "budgets": [
-                { "type": "initial", "maximumWarning": "500kB", "maximumError": "1MB" },
-                { "type": "anyComponentStyle", "maximumWarning": "4kB", "maximumError": "8kB" }
+                { "type": "initial", "maximumWarning": "600kB", "maximumError": "1MB" },
+                { "type": "anyComponentStyle", "maximumWarning": "8kB", "maximumError": "12kB" }
               ],
               "outputHashing": "all"
             },

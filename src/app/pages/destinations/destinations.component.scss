@@ -7,8 +7,7 @@
 .dest-card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 18px; transition: box-shadow .15s;
   &:hover { box-shadow: 0 8px 24px rgba(22,58,46,.1); }
 }
-.dest-icon { font-size: 1.8rem; flex-shrink: 0; }
-.dest-info { flex: 1; h3 { font-size: 1.1rem; margin-bottom: 2px; } .km { font-size: .84rem; color: var(--ink-soft); } }
+.dest-info { flex: 1; min-width: 0; h3 { font-size: 1.1rem; margin-bottom: 2px; } .km { font-size: .84rem; color: var(--ink-soft); } }
 .drop-info { background: var(--forest); color: var(--paper); border-radius: var(--radius); padding: 28px 30px;
   h3 { font-size: 1.4rem; margin-bottom: 8px; }
   p { font-size: .95rem; color: rgba(248,244,234,.8); margin-bottom: 18px; }
@@ -23,7 +22,17 @@
 .page-hero-inner { position: relative; z-index: 2; }
 
 .dest-thumb {
-  width: 72px; height: 56px; border-radius: 10px; overflow: hidden; flex-shrink: 0;
+  width: 84px; height: 66px; border-radius: 10px; overflow: hidden; flex-shrink: 0;
   img { width: 100%; height: 100%; object-fit: cover; }
 }
 .dest-card { gap: 14px; }
+
+@media (max-width: 640px) {
+  .dest-card {
+    flex-wrap: wrap;
+    padding: 16px;
+  }
+  .dest-thumb { width: 88px; height: 88px; }
+  .dest-info { flex-basis: calc(100% - 88px - 14px); }
+  .dest-card .btn { flex-basis: 100%; }
+}

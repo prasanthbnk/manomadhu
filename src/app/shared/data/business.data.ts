@@ -8,11 +8,65 @@ export const BUSINESS = {
   whatsappDisplay: '95666 53414',
   googleMapsEmbed: 'https://www.google.com/maps?q=Saibaba+Colony+NSR+Road+Coimbatore&output=embed',
   googleMapsLink: 'https://www.google.com/maps?q=Saibaba+Colony+NSR+Road+Coimbatore',
+  // Opens straight to the reviews tab of the Google Business listing (used by "See all reviews").
+  googleReviewsLink: 'https://www.google.com/maps/place/Mano+Madhu+Tours+and+Travels/@11.0254367,76.9322223,20z/data=!4m8!3m7!1s0x3ba859fadb8b4073:0xbd4ce7136a032bcc!8m2!3d11.0229649!4d76.9378829!9m1!1b1!16s%2Fg%2F11w9j5ntsr!5m1!1e4?entry=ttu&g_ep=EgoyMDI2MDkyMC4wIKXMDSoASAFQAw%3D%3D',
+  // Fill these two in to make the homepage Reviews section pull LIVE ratings/reviews
+  // straight from Google instead of the curated fallback list below.
+  // See reviews.component.ts for the full setup steps.
+  //   1. googlePlaceId  — https://developers.google.com/maps/documentation/places/web-service/place-id
+  //   2. googleMapsApiKey — a Maps JavaScript API key from console.cloud.google.com,
+  //      with "Maps JavaScript API" + "Places API" enabled and HTTP-referrer restricted
+  //      to this site's domain.
+  googlePlaceId: '',
+  googleMapsApiKey: '',
+  reviewCount: '28',
   experience: '4+',
   customers: '200+',
   rating: '5.0',
   discount: '5%'
 };
+
+// Real reviews from the business's Google Maps listing (manually pulled — Google's
+// review widget blocks automated scraping beyond a handful of entries). Shown until
+// BUSINESS.googlePlaceId + a Maps API key are configured for the live widget.
+// Source: https://www.google.com/maps/place/Mano+Madhu+Tours+and+Travels — 5.0★, 28 reviews.
+export const REVIEWS = [
+  {
+    name: 'Dr.Latha Natarajan',
+    initial: 'D',
+    rating: 5,
+    time: '5 months ago',
+    text: 'The persons who took us around during the trip were kind and obliging. We were very happy with their services.'
+  },
+  {
+    name: 'THAVACEKA G',
+    initial: 'T',
+    rating: 5,
+    time: '9 months ago',
+    text: 'Excellent service and smooth travel experience.'
+  },
+  {
+    name: 'Madhura Sangeeth Gopal',
+    initial: 'M',
+    rating: 5,
+    time: '11 months ago',
+    text: 'It was wonderful and safe journey with Madhu anna. And also the fare is budget friendly and sensible. No extra charges.'
+  },
+  {
+    name: 'Rana Brij',
+    initial: 'R',
+    rating: 5,
+    time: '2 months ago',
+    text: 'Awesome trip with Madhu Travels. Will like to meet and have experience again.'
+  },
+  {
+    name: 'mohandoss krishnan',
+    initial: 'M',
+    rating: 5,
+    time: '1 year ago',
+    text: 'Very polite and guiding to see new sight seeing.'
+  }
+];
 
 export const VEHICLES = [
   {
@@ -51,8 +105,7 @@ export const TARIFF = [
     models: 'Swift, Celerio',
     local: '₹27/km',
     hourly: '₹309/hr (10 km/hr)',
-    outstation: '₹15/km + ₹500',
-    outstationNote: 'up & down'
+    outstation: '₹15/km + ₹500'
   },
   {
     vehicle: 'Ertiga',
@@ -127,7 +180,7 @@ export const PACKAGES = [
     id: 3,
     category: 'Pilgrimage',
     title: 'Palani Murugan Temple',
-    price: 1999,
+    price: 4199,
     route: ['Coimbatore', 'Palani'],
     desc: 'Day trip to the hilltop shrine of Lord Murugan at Palani. Toll, parking extra.',
     highlight: 'Budget pick'

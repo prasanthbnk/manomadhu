@@ -28,6 +28,12 @@ export class NavbarComponent {
   @HostListener('window:scroll')
   onScroll() { this.scrolled.set(window.scrollY > 20); }
 
-  toggleMenu() { this.menuOpen.update(v => !v); }
-  closeMenu()  { this.menuOpen.set(false); }
+  toggleMenu() {
+    this.menuOpen.update(v => !v);
+    document.body.classList.toggle('menu-locked', this.menuOpen());
+  }
+  closeMenu() {
+    this.menuOpen.set(false);
+    document.body.classList.remove('menu-locked');
+  }
 }

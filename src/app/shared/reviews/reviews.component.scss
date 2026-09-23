@@ -1,0 +1,59 @@
+:host { display: block; }
+
+.rev-summary {
+  display: flex; align-items: center; gap: 14px;
+  margin: -12px 0 26px;
+  flex-wrap: wrap;
+}
+.g-logo { flex-shrink: 0; }
+.rev-summary-text { display: flex; flex-direction: column; gap: 2px; }
+.rev-rating {
+  display: flex; align-items: center; gap: 8px;
+  strong { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 1.3rem; color: var(--ink); }
+}
+.rev-stars { display: inline-flex; gap: 1px; }
+.rev-count { font-size: .82rem; color: var(--ink-soft); }
+.rev-cta { margin-left: auto; }
+
+.rev-scroll {
+  display: flex; gap: 16px; overflow-x: auto; justify-content: center;
+  scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+  padding-bottom: 6px; margin: 0 -22px;
+  // Extra side padding (on top of the 22px page gutter) so the first/last card can
+  // actually reach dead-center of the viewport, not just the scroll boundary.
+  padding-left: max(22px, calc(50% - 180px));
+  padding-right: max(22px, calc(50% - 180px));
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+
+.rev-card {
+  flex: 0 0 360px; scroll-snap-align: center;
+  background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 20px;
+}
+.rev-card-head {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+  strong { display: block; font-size: .92rem; }
+}
+.rev-avatar {
+  width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0; object-fit: cover;
+}
+.rev-avatar-initial {
+  display: grid; place-items: center;
+  background: var(--forest); color: var(--marigold);
+  font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: .95rem;
+}
+.rev-time { font-size: .76rem; color: var(--ink-soft); }
+.rev-card-stars { display: flex; gap: 1px; margin-bottom: 10px; }
+.rev-text {
+  font-size: .88rem; color: var(--ink-soft); line-height: 1.55;
+  display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden;
+}
+
+@media (max-width: 600px) {
+  .rev-summary { margin-top: 0; }
+  .rev-cta { display: none; }
+  .rev-scroll { padding-left: 5%; padding-right: 5%; }
+  .rev-card { flex-basis: 90%; }
+}

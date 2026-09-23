@@ -16,9 +16,16 @@
   animation: qmPop .2s ease;
 }
 
+.qm-card-result {
+  height: min(86vh, 720px);
+  display: flex; flex-direction: column;
+  overflow: hidden;
+}
+
 @keyframes qmFade { from { opacity: 0; } to { opacity: 1; } }
 @keyframes qmPop { from { opacity: 0; transform: scale(.94) translateY(10px); } to { opacity: 1; transform: none; } }
 
+// ── Form phase ──────────────────────────────────────────────────
 .qm-head {
   display: flex; align-items: center; justify-content: space-between;
   padding: 20px 22px; border-bottom: 1px solid var(--line);
@@ -30,7 +37,9 @@
   }
 }
 
-.qm-body { padding: 20px 22px 4px; }
+.qm-body { padding: 20px 22px 22px; }
+
+.field label { display: flex; align-items: center; gap: 6px; }
 
 .qm-autocomplete { position: relative; }
 
@@ -42,21 +51,38 @@
   border-radius: 11px;
   box-shadow: 0 12px 28px rgba(22, 58, 46, .18);
   list-style: none;
-  max-height: 220px; overflow-y: auto;
-  margin: 0;
+  max-height: 260px; overflow-y: auto;
+  margin: 0; padding: 6px;
 
   li {
-    padding: 10px 14px;
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 9px 10px;
+    border-radius: 8px;
     font-size: .9rem;
     cursor: pointer;
-    border-bottom: 1px solid var(--line);
-    &:last-child { border-bottom: none; }
-    &:hover { background: var(--sand); }
+    scroll-margin: 6px;
+    &:hover, &.active { background: var(--sand); }
   }
 
   .qm-suggestion-status {
     color: var(--ink-soft); cursor: default;
     &:hover { background: none; }
+  }
+}
+
+.qm-sugg-icon {
+  flex-shrink: 0; margin-top: 2px; color: var(--ink-soft);
+}
+
+.qm-sugg-text {
+  display: flex; flex-direction: column; gap: 1px; min-width: 0;
+  b {
+    font-weight: 600; color: var(--ink);
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  span {
+    font-size: .78rem; color: var(--ink-soft);
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
   }
 }
 
@@ -69,33 +95,148 @@
   &:disabled { opacity: .6; cursor: default; }
 }
 
-.qm-distance-btn { margin: 4px 0 16px; }
+.qm-distance-btn { margin: 4px 0 0; }
 
-.qm-result {
-  background: var(--sand); border-radius: 11px;
-  padding: 12px 14px; margin-bottom: 16px;
-  font-size: .95rem; color: var(--ink);
-}
-
-.qm-fare {
-  background: rgba(240, 160, 45, .14);
-  border: 1px solid rgba(240, 160, 45, .35);
-  border-radius: 11px;
-  padding: 12px 14px; margin-bottom: 16px;
-  display: flex; flex-direction: column; gap: 2px;
-  b { color: var(--ink); font-size: 1.02rem; }
-  span { font-size: .8rem; color: var(--ink-soft); }
+.qm-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
 }
 
 .qm-error {
   color: var(--kumkum); font-size: .86rem;
-  margin: -6px 0 16px; line-height: 1.5;
+  margin: -6px 0 14px; line-height: 1.5;
 }
 
+// ── Pickup / destination dots (shared) ────────────────────────────
+.qm-dot {
+  display: inline-block; width: 9px; height: 9px; border-radius: 50%;
+  flex-shrink: 0;
+}
+.qm-dot-a { background: var(--forest); }
+.qm-dot-b { background: var(--kumkum); }
+
+// ── Result phase: map ──────────────────────────────────────────
+.qm-map-wrap {
+  position: relative;
+  flex: 0 0 34%;
+  background: var(--sand);
+}
+
+.qm-map { width: 100%; height: 100%; isolation: isolate; }
+
+.qm-round-btn {
+  position: absolute; top: 14px;
+  width: 38px; height: 38px; border-radius: 50%;
+  background: var(--white); border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.05rem; color: var(--ink);
+  box-shadow: 0 4px 14px rgba(22, 58, 46, .3);
+  z-index: 10;
+  &:hover { color: var(--kumkum); }
+}
+.qm-back { left: 14px; }
+.qm-dismiss { right: 14px; font-size: .85rem; }
+
+:host ::ng-deep .qm-pin {
+  display: flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  color: #fff; font-size: .78rem; font-weight: 700;
+  border: 2px solid #fff; box-shadow: 0 2px 8px rgba(22,58,46,.35);
+}
+:host ::ng-deep .qm-pin-a { background: var(--forest); }
+:host ::ng-deep .qm-pin-b { background: var(--kumkum); }
+
+// ── Result phase: sheet ────────────────────────────────────────
+.qm-sheet {
+  flex: 1; min-height: 0; overflow-y: auto;
+  background: var(--white);
+  border-radius: 20px 20px 0 0;
+  margin-top: -18px;
+  padding: 8px 22px 14px;
+  position: relative; z-index: 5;
+}
+
+.qm-sheet-handle {
+  width: 40px; height: 4px; border-radius: 100px;
+  background: var(--line); margin: 0 auto 12px;
+}
+
+.qm-sheet-title {
+  font-size: .78rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .04em; color: var(--ink-soft); margin-bottom: 12px;
+}
+
+.qm-route {
+  display: flex; gap: 12px; padding-bottom: 14px; margin-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.qm-route-line {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 4px 0;
+}
+
+.qm-route-track {
+  flex: 1; width: 2px; min-height: 24px;
+  background: var(--line); margin: 4px 0;
+}
+
+.qm-route-labels {
+  flex: 1; min-width: 0;
+  display: flex; flex-direction: column; gap: 13px;
+  div { display: flex; flex-direction: column; gap: 2px; }
+}
+
+.qm-label {
+  font-size: .74rem; color: var(--ink-soft);
+}
+
+.qm-route-labels b, .qm-info b {
+  font-size: .92rem; color: var(--ink); font-weight: 600;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+.qm-info-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  padding-bottom: 14px; margin-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.qm-info {
+  display: flex; align-items: center; gap: 8px;
+  svg { color: var(--forest); flex-shrink: 0; }
+  div { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+}
+
+.qm-fare-row {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 12px; margin-bottom: 4px;
+  div { display: flex; flex-direction: column; gap: 2px; }
+  b { font-size: 1rem; color: var(--ink); font-weight: 700; }
+}
+
+.qm-fare-amount {
+  align-items: flex-end;
+  b { font-size: 1.5rem; color: var(--kumkum); }
+}
+
+.qm-summary-note {
+  text-align: center; font-size: .76rem; color: var(--ink-soft);
+  padding-top: 10px; border-top: 1px dashed var(--line);
+}
+
+// ── Footer ──────────────────────────────────────────────────────
 .qm-foot {
-  padding: 18px 22px 22px;
+  padding: 16px 22px;
   border-top: 1px solid var(--line);
 }
+
+.qm-foot-result {
+  display: flex; align-items: center; gap: 12px;
+  flex-shrink: 0;
+  .qm-round-btn { position: static; box-shadow: 0 2px 8px rgba(22,58,46,.15); border: 1px solid var(--line); }
+}
+
+.qm-confirm-btn { flex: 1; }
 
 .qm-note {
   text-align: center; font-size: .8rem;

@@ -36,6 +36,9 @@ import { BUSINESS } from '../data/business.data';
   `,
   styles: [`
     .wa-widget { position: fixed; bottom: 22px; right: 22px; z-index: 80; display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+    @media (max-width: 900px) {
+      .wa-widget { bottom: calc(var(--bottom-nav-h) + env(safe-area-inset-bottom) + 14px); right: 16px; }
+    }
     .wa-fab {
       width: 58px; height: 58px; border-radius: 50%;
       background: var(--wa); color: #fff; border: none; cursor: pointer;

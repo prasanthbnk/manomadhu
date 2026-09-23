@@ -26,10 +26,6 @@ export class DestinationsComponent {
     return this.filter() === 'all' ? this.all : this.all.filter(d => d.type === this.filter());
   }
 
-  tagMap: Record<string, string> = {
-    hill: '🏔️', temple: '🛕', nature: '🌊', local: '📍', interstate: '🚗'
-  };
-
   // returns index in the master list (for image numbering 18+)
   allIndex(dest: any): number {
     return this.all.findIndex(d => d.name === dest.name);

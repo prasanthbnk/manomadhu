@@ -3,11 +3,12 @@ import { RouterLink } from '@angular/router';
 import { BUSINESS, VEHICLES, PACKAGES, SERVICES } from '../../shared/data/business.data';
 import { WhatsappService } from '../../shared/services/whatsapp.service';
 import { QuoteModalService } from '../../shared/services/quote-modal.service';
+import { ReviewsComponent } from '../../shared/reviews/reviews.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, ReviewsComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

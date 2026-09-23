@@ -33,4 +33,29 @@
 
 // About image
 .about-right { display: flex; flex-direction: column; gap: 20px; }
-.about-img { width: 100%; height: 260px; object-fit: cover; border-radius: var(--radius); border: 1px solid var(--line); }
+
+// Swipeable team/vehicle photo gallery
+.about-swiper { display: flex; flex-direction: column; gap: 12px; }
+
+.as-track {
+  display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch; scrollbar-width: none;
+  border-radius: var(--radius); border: 1px solid var(--line);
+  &::-webkit-scrollbar { display: none; }
+}
+
+.as-slide {
+  flex: 0 0 100%; width: 100%; height: 260px;
+  object-fit: cover; scroll-snap-align: start;
+}
+
+.as-dots {
+  display: flex; justify-content: center; gap: 7px;
+}
+
+.as-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--line); border: none; padding: 0; cursor: pointer;
+  transition: background .15s, width .15s;
+  &.active { background: var(--kumkum); width: 20px; border-radius: 100px; }
+}

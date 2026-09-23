@@ -43,6 +43,26 @@
 .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
 
 .hero-phones { display: flex; gap: 28px; margin-top: 30px; flex-wrap: wrap; }
+
+// App-style quick-action icons — mobile only (see media query below)
+.quick-actions { display: none; }
+.qa-item {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  background: none; border: none; cursor: pointer;
+  font-family: 'DM Sans', sans-serif; font-size: .78rem; font-weight: 600;
+  color: var(--paper);
+  transition: transform .15s ease;
+  &:active { transform: scale(.94); }
+}
+.qa-ic {
+  width: 54px; height: 54px; border-radius: 18px;
+  display: grid; place-items: center; color: #fff;
+  box-shadow: 0 8px 18px rgba(0,0,0,.25);
+}
+.qa-wa { background: var(--wa); }
+.qa-marigold { background: var(--marigold); color: #3a2708; }
+.qa-kumkum { background: var(--kumkum); }
+.qa-forest { background: var(--forest-deep); border: 1px solid rgba(255,255,255,.18); }
 .phone-item {
   span { display: block; font-size: .76rem; color: rgba(248,244,234,.6); letter-spacing: .04em; margin-bottom: 2px; }
   a {
@@ -54,7 +74,7 @@
 
 // Glassmorphism card
 .hero-card {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.058);
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 24px; padding: 30px;
   backdrop-filter: blur(20px) saturate(1.4);
@@ -162,12 +182,44 @@
 .sec-cta { text-align: center; margin-top: 36px; }
 
 // ── Responsive ────────────────────────────────────────────────
-@media (max-width: 940px) {
+@media (max-width: 940px) and (min-width: 901px) {
   .hero-grid { grid-template-columns: 1fr; padding-bottom: 110px; }
   .fleet-grid, .pkg-grid, .svc-grid { grid-template-columns: repeat(2,1fr); }
   .trust-grid { grid-template-columns: repeat(2,1fr); .trust-item:nth-child(2) { border-right: none; } }
 }
+
+// ── Mobile app mode ──────────────────────────────────────────
+@media (max-width: 900px) {
+  section { padding: 46px 0; }
+
+  // Compact app-style hero
+  .hero { min-height: auto; padding: 18px 0 0; }
+  .hero-grid { grid-template-columns: 1fr; gap: 24px; padding-bottom: 36px; }
+  .hero-content {
+    h1 { font-size: clamp(1.9rem, 7.5vw, 2.5rem); }
+    .lead { font-size: .98rem; margin: 14px 0 20px; max-width: none; }
+  }
+  .hero-actions, .hero-phones { display: none; }
+  .quick-actions { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 4px; }
+  .hero-card { padding: 22px; }
+
+  // Preview grids → swipeable carousels
+  .fleet-grid, .pkg-grid, .svc-grid {
+    display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+    scroll-padding-left: 22px;
+    gap: 14px; margin: 0 -22px; padding: 4px 22px 12px;
+    -webkit-overflow-scrolling: touch; scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
+  }
+  .vehicle-card, .pkg-card { flex: 0 0 78%; scroll-snap-align: start; }
+  .svc-card { flex: 0 0 66%; scroll-snap-align: start; }
+
+  .trust-grid { grid-template-columns: repeat(2,1fr); .trust-item:nth-child(2) { border-right: none; } }
+  .sec-head p { max-width: none; }
+}
+
 @media (max-width: 600px) {
-  .fleet-grid, .pkg-grid, .svc-grid { grid-template-columns: 1fr; }
   .cta-inner { flex-direction: column; text-align: center; }
+  .vehicle-card, .pkg-card { flex-basis: 85%; }
+  .svc-card { flex-basis: 76%; }
 }

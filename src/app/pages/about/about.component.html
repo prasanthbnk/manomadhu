@@ -20,8 +20,32 @@
       <a routerLink="/contact" class="btn btn-primary" style="margin-top:10px">Get in touch</a>
     </div>
     <div class="about-right">
-      <!-- 13: team/office photo -->
-      <img src="assets/images/13-team.jpg" alt="Mano Madhu Tours team and vehicles" class="about-img" loading="lazy" />
+      <!-- Swipeable gallery: the Mano Madhu team, fleet and the trips they've run -->
+      <div class="about-swiper">
+        <div
+          class="as-track"
+          #teamTrack
+          (scroll)="onSwiperScroll()"
+          (mouseenter)="pauseAuto()"
+          (mouseleave)="resumeAuto()"
+          (touchstart)="pauseAuto()"
+          (touchend)="resumeAuto()"
+        >
+          @for (photo of teamPhotos; track photo; let i = $index) {
+            <img [src]="'assets/images/' + photo" alt="Mano Madhu Tours team and vehicles" class="as-slide" loading="lazy" />
+          }
+        </div>
+        <div class="as-dots">
+          @for (photo of teamPhotos; track photo; let i = $index) {
+            <button
+              class="as-dot"
+              [class.active]="activeSlide() === i"
+              (click)="goToSlide(i)"
+              [attr.aria-label]="'Go to photo ' + (i + 1)"
+            ></button>
+          }
+        </div>
+      </div>
       <div class="stats-box">
         @for (stat of stats; track stat.label) {
           <div class="stat">

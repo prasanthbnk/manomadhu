@@ -41,29 +41,37 @@ export class WhatsappService {
     to: string;
     fromCoords?: { lat: number; lon: number } | null;
     toCoords?: { lat: number; lon: number } | null;
+    date?: string | null;
     distanceKm?: number | null;
     durationMin?: number | null;
     vehicle: string;
     estimatedFare?: number | null;
   }) {
     const mapLink = (c: { lat: number; lon: number }) => `https://maps.google.com/?q=${c.lat},${c.lon}`;
+    const departure = this.formatDeparture(details.date);
 
     const lines = [
-      `Hi Mano Madhu Tours, I'd like a fare quote for a trip.`,
+      `Hi Mano Madhu Tours, I'd like to book a trip.`,
       ``,
-      `From: ${details.from}`,
+      `Pickup: ${details.from}`,
       details.fromCoords ? `\u{1F4CD} ${mapLink(details.fromCoords)}` : '',
-      `To: ${details.to}`,
+      `Destination: ${details.to}`,
       details.toCoords ? `\u{1F4CD} ${mapLink(details.toCoords)}` : '',
-      details.distanceKm ? `Approx. distance: ${details.distanceKm.toFixed(1)} km` : '',
+      departure ? `Departure: ${departure}` : '',
+      details.distanceKm ? `Estimated distance: ${details.distanceKm.toFixed(1)} km` : '',
       details.durationMin ? `Approx. drive time: ${this.formatDuration(details.durationMin)}` : '',
       `Vehicle needed: ${details.vehicle}`,
-      details.estimatedFare ? `Estimated fare: ₹${details.estimatedFare.toLocaleString('en-IN')} (website estimate, please confirm)` : '',
+      details.estimatedFare ? `Total fare: ₹${details.estimatedFare.toLocaleString('en-IN')} (website estimate, please confirm)` : '',
       ``,
-      `Please share the fare and availability.`
+      `Please confirm availability and the final fare.`
     ].filter(Boolean).join('\n');
 
     window.open(this.base + encodeURIComponent(lines), '_blank');
+  }
+
+  private formatDeparture(date?: string | null): string | null {
+    if (!date) return null;
+    return new Date(`${date}T00:00:00`).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
   }
 
   private formatDuration(min: number): string {
