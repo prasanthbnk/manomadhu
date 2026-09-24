@@ -91,7 +91,7 @@ export const VEHICLES = [
     icon: 'tempo'
   },
   {
-    seats: 26,
+    seats: '26 to 56',
     label: 'Mini Bus',
     models: 'Standard Bus',
     desc: 'Weddings, college tours and large group events.',
@@ -133,7 +133,7 @@ export const TARIFF = [
   },
   {
     vehicle: 'Mini Bus',
-    models: '26-Seater',
+    models: '26 to 56-Seater',
     local: 'On request',
     hourly: 'On request',
     outstation: 'On request',
@@ -154,7 +154,7 @@ export const FARE_RATES = [
   { vehicle: '7-Seater (Ertiga)', localPerKm: 36, localExtra: 'Parking extra', outstationPerKm: 19, outstationExtra: 'Toll extra' },
   { vehicle: '7-Seater (Innova / Crysta)', localPerKm: 38, localExtra: 'Parking extra', outstationPerKm: 21, outstationExtra: 'Toll extra' },
   { vehicle: '14-Seater (Tempo Traveller)', localPerKm: null, localExtra: '', outstationPerKm: null, outstationExtra: '' },
-  { vehicle: '26-Seater (Mini Bus)', localPerKm: null, localExtra: '', outstationPerKm: null, outstationExtra: '' }
+  { vehicle: '26 to 56-Seater (Mini Bus)', localPerKm: null, localExtra: '', outstationPerKm: null, outstationExtra: '' }
 ];
 
 export const PACKAGES = [

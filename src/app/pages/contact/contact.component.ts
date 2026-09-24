@@ -29,7 +29,7 @@ export class ContactComponent {
     '7-Seater (Ertiga)',
     '7-Seater (Innova / Crysta)',
     '14-Seater (Tempo Traveller)',
-    '26-Seater (Mini Bus)'
+    '26 to 56-Seater (Mini Bus)'
   ];
 
   sent = signal(false);

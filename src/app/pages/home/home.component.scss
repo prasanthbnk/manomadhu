@@ -147,8 +147,13 @@
 }
 .pkg-top {
   background: var(--forest); color: var(--paper); padding: 16px 22px;
+  min-height: 96px; display: flex; flex-direction: column; justify-content: center;
   .pkg-cat { font-size: .74rem; color: var(--marigold-soft); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
-  h3 { font-size: 1.15rem; margin-top: 6px; }
+  h3 {
+    font-size: 1.15rem; margin-top: 6px; line-height: 1.3;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 }
 .pkg-body {
   padding: 18px 22px; flex: 1; display: flex; flex-direction: column; gap: 10px;
