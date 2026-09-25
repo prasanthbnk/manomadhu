@@ -13,12 +13,14 @@
 }
 
 .nav-in {
+  position: relative;
   display: flex; align-items: center;
   justify-content: space-between; height: 100%;
   gap: 16px;
 }
 
 .brand {
+  position: relative; z-index: 3;
   display: flex; align-items: center; flex-shrink: 0;
   .brand-logo {
     height: 54px; width: auto; flex-shrink: 0;
@@ -38,6 +40,7 @@
 }
 
 .nav-cta {
+  position: relative; z-index: 3;
   display: flex; align-items: center; gap: 12px; flex-shrink: 0;
 }
 
@@ -116,25 +119,28 @@
 }
 
 // ── Driving mascot ───────────────────────────────────────────
-// Decorative only, shown on mobile in the gap the desktop nav links
-// leave behind once they're hidden — animates continuously on every
-// page since the navbar is a persistent, app-level component.
+// Decorative only, shown on mobile where the desktop nav links are
+// hidden — starts tucked behind the logo and drives left-to-right
+// across the navbar in a continuous loop, animating on every page
+// since the navbar is a persistent, app-level component.
 .nav-car {
   display: none;
   pointer-events: none;
-  overflow: hidden;
+  z-index: 1;
 }
 
 @media (max-width: 900px) {
   .nav-car {
     display: block;
-    height: 34px;
-    flex-shrink: 1;
-    min-width: 0;
+    position: absolute;
+    left: 0; top: 50%;
+    width: 63px; height: 34px;
+    margin-top: -17px;
+    animation: navCarLoop 6s linear infinite;
   }
   .nav-car img {
-    height: 100%; width: auto; display: block;
-    animation: navCarDrive 1.6s ease-in-out infinite;
+    height: 100%; width: 100%; display: block;
+    animation: navCarShake 1.6s ease-in-out infinite;
     transform-origin: 50% 100%;
   }
 }
@@ -143,7 +149,12 @@
   .nav-car { display: none; }
 }
 
-@keyframes navCarDrive {
+@keyframes navCarLoop {
+  0%   { left: 0; }
+  100% { left: calc(100% - 63px); }
+}
+
+@keyframes navCarShake {
   0%, 100% { transform: translateY(0) rotate(0deg); }
   25%      { transform: translateY(-2px) rotate(-1deg); }
   50%      { transform: translateY(0) rotate(0deg); }
@@ -151,5 +162,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .nav-car { animation: none; }
   .nav-car img { animation: none; }
 }
