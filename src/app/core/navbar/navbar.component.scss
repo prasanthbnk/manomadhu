@@ -150,8 +150,12 @@
 }
 
 @keyframes navCarLoop {
-  0%   { left: 0; }
-  100% { left: calc(100% - 63px); }
+  0%   { left: 0; opacity: 0; }
+  15%  { opacity: 0; }
+  28%  { opacity: 1; }
+  80%  { opacity: 1; }
+  95%  { opacity: 0; }
+  100% { left: calc(100% - 63px); opacity: 0; }
 }
 
 @keyframes navCarShake {
