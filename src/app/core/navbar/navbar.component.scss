@@ -114,3 +114,42 @@
 @media (max-width: 480px) {
   .brand .brand-logo { height: 44px; }
 }
+
+// ── Driving mascot ───────────────────────────────────────────
+// Decorative only, shown on mobile in the gap the desktop nav links
+// leave behind once they're hidden — animates continuously on every
+// page since the navbar is a persistent, app-level component.
+.nav-car {
+  display: none;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+@media (max-width: 900px) {
+  .nav-car {
+    display: block;
+    height: 34px;
+    flex-shrink: 1;
+    min-width: 0;
+  }
+  .nav-car img {
+    height: 100%; width: auto; display: block;
+    animation: navCarDrive 1.6s ease-in-out infinite;
+    transform-origin: 50% 100%;
+  }
+}
+
+@media (max-width: 380px) {
+  .nav-car { display: none; }
+}
+
+@keyframes navCarDrive {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25%      { transform: translateY(-2px) rotate(-1deg); }
+  50%      { transform: translateY(0) rotate(0deg); }
+  75%      { transform: translateY(-1px) rotate(1deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-car img { animation: none; }
+}
