@@ -10,6 +10,13 @@ export const BUSINESS = {
   googleMapsLink: 'https://www.google.com/maps?q=Saibaba+Colony+NSR+Road+Coimbatore',
   // Opens straight to the reviews tab of the Google Business listing (used by "See all reviews").
   googleReviewsLink: 'https://www.google.com/maps/place/Mano+Madhu+Tours+and+Travels/@11.0254367,76.9322223,20z/data=!4m8!3m7!1s0x3ba859fadb8b4073:0xbd4ce7136a032bcc!8m2!3d11.0229649!4d76.9378829!9m1!1b1!16s%2Fg%2F11w9j5ntsr!5m1!1e4?entry=ttu&g_ep=EgoyMDI2MDkyMC4wIKXMDSoASAFQAw%3D%3D',
+  // Opens the "write a review" dialog for THIS exact listing (verified —
+  // opens the review box titled "Mano Madhu Tours and Travels" directly).
+  // Unlike googleMapsLink (a plain address search, which can resolve to a
+  // different nearby business), this always points at the right place.
+  // ludocid / the lrd hash value are both derived from the same Feature ID
+  // ("0x...:0x...") embedded in googleReviewsLink above.
+  googleWriteReviewLink: 'https://www.google.com/search?q=Mano+Madhu+Tours+and+Travels+Coimbatore&ludocid=13640531441967377356#lrd=0x3ba859fadb8b4073:0xbd4ce7136a032bcc,3,,,,',
   // Fill these two in to make the homepage Reviews section pull LIVE ratings/reviews
   // straight from Google instead of the curated fallback list below.
   // See reviews.component.ts for the full setup steps.
