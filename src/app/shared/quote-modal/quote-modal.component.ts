@@ -172,12 +172,7 @@ export class QuoteModalComponent {
 
     if (isOutstation) {
       const amount = Math.round(km * 2 * perKm) + LONG_TRIP_SURCHARGE;
-      const note = [
-        'Outstation rate (up & down)',
-        rate.outstationExtra,
-        `+₹${LONG_TRIP_SURCHARGE} over ${LONG_TRIP_THRESHOLD_KM} km`
-      ].filter(Boolean).join(' · ');
-      return { amount, note };
+      return { amount, note: '! Toll and parking extra' };
     }
 
     const amount = Math.round(km * perKm);
