@@ -41,6 +41,7 @@ footer {
   transition: background .15s;
   &:hover { background: rgba(248,244,234,.18); }
   &.wa { background: rgba(34,184,91,.2); border-color: rgba(34,184,91,.3); }
+  &.ig { padding: 8px; background: rgba(221,90,138,.2); border-color: rgba(221,90,138,.3); }
 }
 
 .foot-col {

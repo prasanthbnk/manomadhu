@@ -6,6 +6,7 @@ export const BUSINESS = {
   phoneDisplay: '98946 65251',
   whatsapp: '919566653414',
   whatsappDisplay: '95666 53414',
+  instagram: 'https://www.instagram.com/manomadhutoursandtravels',
   googleMapsEmbed: 'https://www.google.com/maps?q=Saibaba+Colony+NSR+Road+Coimbatore&output=embed',
   googleMapsLink: 'https://www.google.com/maps?q=Saibaba+Colony+NSR+Road+Coimbatore',
   // Opens straight to the reviews tab of the Google Business listing (used by "See all reviews").
@@ -99,7 +100,7 @@ export const VEHICLES = [
   },
   {
     seats: '26 to 56',
-    label: 'Mini Bus',
+    label: 'Bus',
     models: 'Standard Bus',
     desc: 'Weddings, college tours and large group events.',
     icon: 'bus'

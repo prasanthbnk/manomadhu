@@ -2,6 +2,13 @@
   .about-text { p { color: var(--ink-soft); margin-bottom: 16px; line-height: 1.75; } h2 { font-size: clamp(1.7rem,3vw,2.4rem); margin-bottom: 20px; } }
   @media (max-width: 768px) { grid-template-columns: 1fr; }
 }
+.about-cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; margin-top: 10px; }
+.about-ig-link {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: .92rem; font-weight: 600; color: var(--ink);
+  svg { color: #dd5a8a; }
+  &:hover { color: #dd5a8a; }
+}
 .stats-box { background: var(--forest); border-radius: var(--radius); padding: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 2px; overflow: hidden; border-radius: 20px; }
 .stat { padding: 24px; text-align: center; border-right: 1px solid var(--line-light); border-bottom: 1px solid var(--line-light);
   &:nth-child(2n) { border-right: none; } &:nth-child(3), &:nth-child(4) { border-bottom: none; }

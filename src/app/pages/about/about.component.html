@@ -17,7 +17,13 @@
       <p>Mano Madhu Tours and Travels was founded with a simple idea: people in Coimbatore deserve a taxi and travel service they can trust — clean vehicles, honest rates and drivers who care.</p>
       <p>Starting with a single vehicle on NSR Road, Saibaba Colony, we've grown into a full-service travel company operating across Coimbatore and South India, handling everything from airport drops to multi-day pilgrimage tours.</p>
       <p>We are proud of our 5-star Google rating — earned through hundreds of trips where we showed up on time, charged what we quoted, and got our customers home safely.</p>
-      <a routerLink="/contact" class="btn btn-primary" style="margin-top:10px">Get in touch</a>
+      <div class="about-cta-row">
+        <a routerLink="/contact" class="btn btn-primary">Get in touch</a>
+        <a [href]="business.instagram" target="_blank" rel="noopener" class="about-ig-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          Follow us on Instagram
+        </a>
+      </div>
     </div>
     <div class="about-right">
       <!-- Swipeable gallery: the Mano Madhu team, fleet and the trips they've run -->
