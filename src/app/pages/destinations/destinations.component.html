@@ -54,12 +54,11 @@
 
     <div class="drop-info">
       <h3>One-way drop taxi</h3>
-      <p>Heading out of the city? We run economical one-way drops. Fare finalised within 5 km radius of the drop from city centre.</p>
+      <p>Heading out of the city? We run economical one-way drops. Sedan rates shown below — toll &amp; parking extra.</p>
       <div class="drop-routes">
-        <span>CBE → Pollachi</span>
-        <span>CBE → Tiruppur</span>
-        <span>CBE → Mettupalayam</span>
-        <span>CBE → Palakkad</span>
+        @for (r of dropRoutes; track r.name) {
+          <span (click)="bookDrop(r)">CBE → {{ r.name }} · ₹{{ r.price }}</span>
+        }
       </div>
     </div>
   </div>

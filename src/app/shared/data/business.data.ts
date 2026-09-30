@@ -79,7 +79,7 @@ export const VEHICLES = [
   {
     seats: 4,
     label: 'Sedan & Hatchback',
-    models: 'Swift · Celerio',
+    models: 'Swift and Etios',
     desc: 'Ideal for airport drops, city rides and small family trips.',
     icon: 'sedan'
   },
@@ -196,7 +196,7 @@ export const PACKAGES = [
     id: 4,
     category: 'Kerala Day Trip',
     title: 'Thrissur Zoo & Snehatheeram Beach',
-    price: 3299,
+    price: 4599,
     route: ['Thrissur Zoo', 'Snehatheeram Beach'],
     desc: 'Cross into Kerala for a zoo visit followed by a relaxed evening at the beach.',
     highlight: ''
@@ -205,7 +205,7 @@ export const PACKAGES = [
     id: 5,
     category: 'Temple Tour',
     title: 'Madurai Meenakshi',
-    price: 6299,
+    price: 6699,
     route: ['Coimbatore', 'Meenakshi Amman Temple'],
     desc: 'A full-day drive to the magnificent Meenakshi Amman Temple in Madurai.',
     highlight: ''
@@ -236,6 +236,17 @@ export const DESTINATIONS = [
   { name: 'Madurai', type: 'temple', km: '~215 km' },
   { name: 'Thrissur', type: 'interstate', km: '~155 km' },
   { name: 'Srirangam', type: 'temple', km: '~205 km' }
+];
+
+// One-way drop taxi fares from Coimbatore — sedan only, toll & parking extra.
+export const DROP_ROUTES = [
+  { name: 'Pollachi', price: 1799 },
+  { name: 'Mettupalayam', price: 1299 },
+  { name: 'Tiruppur', price: 1799 },
+  { name: 'Avinashi', price: 1799 },
+  { name: 'Erode', price: 3799 },
+  { name: 'Salem', price: 4999 },
+  { name: 'Palakkad', price: 2199 }
 ];
 
 export const SERVICES = [

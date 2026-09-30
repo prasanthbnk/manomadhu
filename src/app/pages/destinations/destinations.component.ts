@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { DESTINATIONS } from '../../shared/data/business.data';
+import { DESTINATIONS, DROP_ROUTES } from '../../shared/data/business.data';
 import { WhatsappService } from '../../shared/services/whatsapp.service';
 
 @Component({
@@ -11,6 +11,7 @@ import { WhatsappService } from '../../shared/services/whatsapp.service';
 })
 export class DestinationsComponent {
   all = DESTINATIONS;
+  dropRoutes = DROP_ROUTES;
   filter = signal('all');
 
   types = [
@@ -35,5 +36,9 @@ export class DestinationsComponent {
 
   book(dest: any) {
     this.wa.openChat(`Hi Mano Madhu Tours, I'd like to book a trip to ${dest.name} from Coimbatore.`);
+  }
+
+  bookDrop(route: any) {
+    this.wa.openChat(`Hi Mano Madhu Tours, I'd like to book a one-way drop taxi from Coimbatore to ${route.name} (₹${route.price}, sedan, toll/parking extra).`);
   }
 }
